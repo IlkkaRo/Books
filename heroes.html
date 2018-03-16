@@ -32,12 +32,23 @@ function Healer (name, level, health, spell) {
 function Monster (name, level, health, ruotti) {
   Hero.call(this, name, level, health);
   this.kieli = ["speaking swedish", "mora"];
-  this.ruotti = function (target1, target2) {
-    console.log(`${this.name} utters demonic incantation at ${target1.name} and ${target2.name} saying ${this.kieli}.`);
-    target1.health = target1.health-40;
-    target2.health = target2.health-40;
-    console.log(`${target1.name} has ${target1.health} health.left and ${target2.name} has ${target2.health} health.left.`);
-
+  this.ruotti = ruotti;
+  this.attack = function (target1, target2, kumpiase) {
+    switch(kumpiase){
+      case "speaking swedish":
+        console.log(`${this.name} utters demonic incantation at ${target1.name} and ${target2.name} saying ${this.ruotti}.`);
+        target1.health = target1.health-40;
+        target2.health = target2.health-40;
+        console.log(`${target1.name} has ${target1.health} health left and ${target2.name} has ${target2.health} health left.`);
+      break;
+      case "mora":
+        var target = Math.random();
+          if(target < "0.5") {target = target1;}
+          else {target = target2};
+        console.log(`${this.name} whips out the mora and swings at ${target.name}.`);
+        target.health = target.health-50;
+        console.log(`${target.name} has ${target.health} health left.`);
+      }
   }
 }
 
@@ -56,18 +67,22 @@ var playerMonster = new Monster ("Håkan the Hårrible", 5, 200, "köttbullarna 
 Warrior.prototype.attack = function (target) {
   console.log(`${this.name} attacks ${target.name} with the ${this.weapon}.`);
   target.health = target.health-30;
-  console.log(`${target.name} has ${target.health} health.left.`);
+  console.log(`${target.name} has ${target.health} health left.`);
 }
 
 Healer.prototype.cast = function (target) {
   console.log(`${this.name} heals ${target.name} with the ${this.spell}.`);
   target.health = target.health+15;
-  console.log(`${target.name} has ${target.health} health.left.`);
+  console.log(`${target.name} has ${target.health} health left.`);
 }
-//kikkeliskokkelis
+
 
 function fight()  {
-  playerMonster.ruotti(playerWarrior, playerHealer);
+
+  var MonsterAttack = Math.floor(Math.random() *100)
+    if (MonsterAttack < "50") {MonsterAttack = "speaking swedish";}
+    else {MonsterAttack = "mora";}
+  playerMonster.attack(playerWarrior, playerHealer, MonsterAttack);
   playerWarrior.attack(playerMonster);
   playerHealer.cast(playerWarrior);
 }
