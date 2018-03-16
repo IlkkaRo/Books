@@ -10,9 +10,6 @@
 
     <script type="text/javascript">
 
-
-
-
 function Hero (name, level, health) {
   this.name = name;
   this.level = level;
@@ -43,6 +40,7 @@ function Monster (name, level, health, ruotti) {
       break;
       case "mora":
         var target = Math.random();
+          // var target = prompt();
           if(target < "0.5") {target = target1;}
           else {target = target2};
         console.log(`${this.name} whips out the mora and swings at ${target.name}.`);
@@ -75,7 +73,6 @@ Healer.prototype.cast = function (target) {
   target.health = target.health+15;
   console.log(`${target.name} has ${target.health} health left.`);
 }
-
 
 function fight()  {
 
