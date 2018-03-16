@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+  /*  function Book(name, author) {
+      this.title = name;
+      this.author = author;
+      this.isRead = false;
+    } */
+
+  //  var book1 = new Book("Wheel of Time", "Robert Jordan");
+
+    var book = {title: "Wheel of Time", author: "Robert, Jordan", isRead: true};
+    var book1 = {title: "Lord of the Rings", author: "J.R.R. Tolkien", isRead: true};
+    var book2 = {title: "Idiot", author: "Fjodor Dostojevski", isRead: false};
+    var book3 = {title: "Sinuhe", author: "Mika Waltari", isRead: true};
+    var book4 = {title: "Inferno", author: "Dante Alighieri", isRead: false};
+
+  /*  Book.prototype.read = function() {
+      this.isRead = true;
+    }; */
+
+//    book4.read();
+
+    var bookshelf = [book, book1, book2, book3, book4];
+    printRead(bookshelf);
+
+
+    function printRead(bookshelf) {
+      for (let i = 0; i < bookshelf.length; i++) {
+        if(bookshelf[i].isRead) {
+      console.log(`I have read: ${bookshelf[i].title}`);
+        }
+      }
+    }
+
+
+
+    </script>
+
+  </body>
+</html>
