@@ -76,6 +76,7 @@ Warrior.prototype.attack = function (target, warriorChoose) { //Warrior actions
 
 Healer.prototype.cast = function (target1, target2, healerChoose) { //Healer actions
   var healerChoose = prompt();
+  var tempName = this.name;
   switch(healerChoose){
     case "Cure":
     console.log(`${this.name} heals ${target1.name} with the ${this.spell}.`);
@@ -88,14 +89,14 @@ Healer.prototype.cast = function (target1, target2, healerChoose) { //Healer act
       if (gods < "0.333") {console.log(`Ukko is pleased and zaps ${target2.name} with a lightningbolt.`);
       target2.health = target2.health-50;
       console.log(`${target2.name} has ${target2.health} health left.`)}
-        else if (gods > "0.666") {console.log(`Ahti is pleased and soothing rain falls on ${playerHealer.name} and ${target1.name}.`);
-        playerHealer.health = playerHealer.health+20;
+        else if (gods > "0.666") {console.log(`Ahti is pleased and soothing rain falls on ${tempName} and ${target1.name}.`);
+        tempName.health = tempName.health+20;
         target1.health = target1.health+20;
-        console.log(`${playerHealer.name} has ${playerHealer.health} health left and ${target1.name} has ${target1.health} health.`)}
-          else {console.log(`Gods are displeased! Smelly sardines fall from the sky hitting ${playerHealer.name} and ${target1.name}.`);
-          playerHealer.health = playerHealer.health-10;
+        console.log(`${tempName} has ${tempName} health left and ${target1.name} has ${target1.health} health.`)}
+          else {console.log(`Gods are displeased! Smelly sardines fall from the sky hitting ${tempName} and ${target1.name}.`);
+          tempName.health = tempName.health-10;
           target1.health = target1.health-10;
-          console.log(`${playerHealer.name} has ${playerHealer.health} health left and ${target1.name} has ${target1.health} health left.`);
+          console.log(`${tempName} has ${tempName.health} health left and ${target1.name} has ${target1.health} health left.`);
       }
     }
     //var rukous =prayer();
@@ -104,6 +105,21 @@ Healer.prototype.cast = function (target1, target2, healerChoose) { //Healer act
 
 }
 }
+
+var slowText = function (target, message, index, interval) {
+  if (index < message.length) {
+    $(target).append(message[index++]);
+    setTimeout(function () { slowText(target, message, index, interval); }, interval);
+  }
+}
+
+$(function () {
+  slowText("#deepWood", "While strolling in the woods, you encounter a wild Håkan! Everyone knows Håkans are awful, he proves it by saying `Hejsan!`", 0, 100);
+});
+
+$(document).ready(function() {
+      $('#woodButton').hide().delay(14000).fadeIn(2200);
+});
 
 function fight()  {
 document.getElementById("placeHolder").innerHTML = "While strolling in the woods, you encounter a wild Håkan! Everyone knows Håkans are awful, he proves it by saying `Hejsan!`";
