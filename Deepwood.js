@@ -106,23 +106,23 @@ Healer.prototype.cast = function (target1, target2, healerChoose) { //Healer act
 }
 }
 
-var slowText = function (target, message, index, interval) {
+var slowText = function (target, message, index, interval) { //letters appear slowly...
   if (index < message.length) {
     $(target).append(message[index++]);
     setTimeout(function () { slowText(target, message, index, interval); }, interval);
   }
 }
 
-$(function () {
+$(function () { //Text that appears and the speed it appears with
   slowText("#deepWood", "While strolling in the woods, you encounter a wild Håkan! Everyone knows Håkans are awful, he proves it by saying `Hejsan!`", 0, 100);
 });
 
-$(document).ready(function() {
+$(document).ready(function() { //button appears after 14 secs with 2.2 delay
       $('#woodButton').hide().delay(14000).fadeIn(2200);
 });
 
 function fight()  {
-document.getElementById("placeHolder").innerHTML = "While strolling in the woods, you encounter a wild Håkan! Everyone knows Håkans are awful, he proves it by saying `Hejsan!`";
+// document.getElementById("placeHolder").innerHTML = "While strolling in the woods, you encounter a wild Håkan! Everyone knows Håkans are awful, he proves it by saying `Hejsan!`";
   var MonsterAttack = Math.floor(Math.random() *100)
     if (MonsterAttack < "50") {MonsterAttack = "speaking swedish";}
     else {MonsterAttack = "mora";}
